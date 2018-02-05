@@ -1,3 +1,8 @@
+//Description:
+//The following initialState was used in redux for button state
+//It's purpose was a bit redundant and so I refactored to a better data structure
+
+//initial code
 const initialState = [
   {
     title: 'Philosophy',
@@ -49,19 +54,28 @@ const initialState = [
   }
 ]
 
-//to become
+//transforming code
+const reducer = (accum, button) => {
+  const buttonTitle = button.title
+  accum[buttonTitle] = button.toggle
+  return accum
+}
+const singleObject = initialState.reduce(reducer, {})
 
-const expectedState = {
+//result of transformation
+const resultState = {
   Philosophy: true,
   Music: true,
   Travelling: false,
   Sport: true,
   Soccer: false,
-  "Rock'n'Roll": false,
+  'Rock\'n\'Roll': false,
   Swimming: false,
   Radiohead: false,
   Dog: true,
   Religion: true,
-  Michael Jackson: true,
-  France: true,
+  'Michael Jackson': true,
+  France: true
 }
+
+console.log(singleObject)
